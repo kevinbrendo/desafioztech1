@@ -1,0 +1,49 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "start": "vue-cli-service serve"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
+    "apollo-boost": "^0.4.9",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-fetch": "^0.7.0",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-http": "^1.5.17",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "vue": "^2.6.11",
+    "vue-apollo": "^3.0.0-beta.11",
+    "vue-axios": "^2.1.5",
+    "vue-class-component": "^7.2.3",
+    "vue-places": "^2.2.0",
+    "vue-property-decorator": "^8.4.2",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "^4.4.0",
+    "@vue/cli-plugin-eslint": "^4.4.0",
+    "@vue/cli-plugin-router": "^4.4.0",
+    "@vue/cli-plugin-typescript": "^4.4.0",
+    "@vue/cli-plugin-vuex": "^4.4.0",
+    "@vue/cli-service": "^4.4.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "graphql-tag": "^2.9.0",
+    "typescript": "~3.9.3",
+    "vue-cli-plugin-apollo": "^0.21.3",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
