@@ -14,7 +14,10 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script>
-      setTimeout(function(){ document.querySelector("#app > div.produtos > div:nth-child(14) > div:nth-child(2)").setAttribute('style', 'display: none'); console.clear }, 3000);
+      document.addEventListener('click', function(){
+        setTimeout(function(){ document.querySelector("#app > div:nth-child(2) > div.produtos > div:nth-child(14) > div:nth-child(2)").setAttribute('style', 'display: none').setAttribute('style', 'display: none'); console.clear }, 2000);
+      })
+      setTimeout(function(){ document.querySelector("#app > div:nth-child(2) > div.produtos > div:nth-child(14) > div:nth-child(2)").setAttribute('style', 'display: none').setAttribute('style', 'display: none'); console.clear }, 2000);
     </script>
   </body>
 </html>
