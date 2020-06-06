@@ -50,30 +50,12 @@ export default class Produtos extends Vue {
           products(categoryId: $categoryId, search: $search) {
             id
             title
-            rgb
             images {
               url
             }
             productVariants {
               price
-              inventoryItemId
-              shortDescription
               title
-              published
-              volume
-              volumeUnit
-              description
-              subtitle
-              components {
-                id
-                productVariantId
-                productVariant {
-                  id
-                  title
-                  description
-                  shortDescription
-                }
-              }
             }
           }
         }
@@ -93,30 +75,12 @@ export default class Produtos extends Vue {
           products(categoryId: $categoryId, search: $search) {
             id
             title
-            rgb
             images {
               url
             }
             productVariants {
               price
-              inventoryItemId
-              shortDescription
               title
-              published
-              volume
-              volumeUnit
-              description
-              subtitle
-              components {
-                id
-                productVariantId
-                productVariant {
-                  id
-                  title
-                  description
-                  shortDescription
-                }
-              }
             }
           }
         }
@@ -125,13 +89,15 @@ export default class Produtos extends Vue {
     }).then(res => {
       this.prod = res.data.poc.products;
     });
-  }
-
-  
+  }  
 }
 </script>
 
 <style scoped>
+img{
+  width: 130px;
+}
+
 .categorias {
   margin: 10px;
 }
@@ -152,12 +118,6 @@ export default class Produtos extends Vue {
 .categorias > button:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
-
-img{
-  width: 130px;
-}
-
 
 .produtos{
   display: flex;
