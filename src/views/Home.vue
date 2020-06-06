@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <div v-if="Loading == false">
         <input 
         v-model="address"
         v-on:keydown.enter="Geocode()"
@@ -8,6 +9,10 @@
         class="form-element"
         >
         <button class="form-element" v-on:click="Geocode()"> > </button>
+        </div>
+        <div v-else class="loading">
+            <img src="https://www.blogson.com.br/wp-content/uploads/2017/10/loading4.gif" alt="loading">
+        </div>
     </div>
 </template>
 
@@ -26,11 +31,13 @@ import { createApolloFetch } from 'apollo-fetch'
         now = new Date()
         lat = ''
         long = ''
+        Loading = false
 
         Geocode() {
             return Axios.get(`
             https://maps.googleapis.com/maps/api/geocode/json?address=${this.address}&key=AIzaSyCziIJeSD5f4XT2G39lT2LFEBeA3R19q9c`)
             .then(x => {
+                this.Loading = true
                 this.lat = x.data.results[0].geometry.location.lat
                 this.long = x.data.results[0].geometry.location.lng
             }).then(() => {
@@ -94,5 +101,9 @@ button.form-element {
     border-bottom-right-radius: 8px;
 }
 
+.loading > img{
+    padding-top: 30px;
+    width: 70px;
+}
 
 </style>
