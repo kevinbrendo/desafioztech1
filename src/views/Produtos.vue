@@ -1,14 +1,11 @@
 <template>
   <div>
   <div class="categorias">
-    <button @click="CategoryFilter(94)">Cervejas</button>
-    <button @click="CategoryFilter(92)">Vinhos</button>
-    <button @click="CategoryFilter(96)">Sem álcool</button>
-    <button @click="CategoryFilter(97)">Petiscos</button>
-    <button @click="CategoryFilter(98)">Outros</button>
+    <Categorias />
+    <Search />
   </div>
   <div class="produtos">
-    <div v-for="(p, i) in prod" :key="i" class="card">
+    <div v-for="(p, i) in Produtos" :key="i" class="card">
       <div v-for="(img, i) in p.images" :key="i" class="imagem">
         <img :src="img.url" @error="errorImage" alt="Produtos">
       </div>
@@ -18,6 +15,7 @@
       </div>
       <button id="botaocomprar">Comprar</button>
     </div>
+    <div>{{ this.$store.state.Produtos.title }}</div>
   </div>
   </div>
 </template>
@@ -26,15 +24,25 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { createApolloFetch } from "apollo-fetch";
+import Search from "@/components/Search.vue";
+import Categorias from '@/components/Categorias.vue'
 
 const fetch = createApolloFetch({
   uri: "https://api.code-challenge.ze.delivery/public/graphql"
 });
 
-@Component
+@Component({
+  components: {
+    Search,
+    Categorias
+  }
+})
 export default class Produtos extends Vue {
-  prod = [];
   id = localStorage.getItem("id");
+
+  get Produtos() {
+    return this.$store.state.Produtos
+  }
 
   // eslint-disable-next-line
   errorImage(event: any){
@@ -43,7 +51,7 @@ export default class Produtos extends Vue {
   }
 
   beforeMount() {
-    fetch({
+    return fetch({
       query: `query poc($id: ID!, $categoryId: Int, $search: String) {
         poc(id: $id) {
           id
@@ -62,61 +70,17 @@ export default class Produtos extends Vue {
       }`,
       variables: { id: this.id, search: "", categoryId: null }
     }).then(res => {
-      this.prod = res.data.poc.products;
+      this.$store.state.Produtos = res.data.poc.products
     });
   }
 
-  // eslint-disable-next-line
-  CategoryFilter(Cid: any) {
-    fetch({
-      query: `query poc($id: ID!, $categoryId: Int, $search: String) {
-        poc(id: $id) {
-          id
-          products(categoryId: $categoryId, search: $search) {
-            id
-            title
-            images {
-              url
-            }
-            productVariants {
-              price
-              title
-            }
-          }
-        }
-      }`,
-      variables: { id: this.id, search: "", categoryId: Cid }
-    }).then(res => {
-      this.prod = res.data.poc.products;
-    });
-  }  
+    
 }
 </script>
 
 <style scoped>
 img{
   width: 130px;
-}
-
-.categorias {
-  margin: 10px;
-}
-
-.categorias > button {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin: 10px;
-  width: 150px;
-  border: none;
-  padding: 8px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(15, 62, 70);
-  text-align: center;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.categorias > button:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .produtos{

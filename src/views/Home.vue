@@ -99,6 +99,7 @@ button.form-element {
     background-color: darkslategray;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    cursor: pointer;
 }
 
 .loading > img{
