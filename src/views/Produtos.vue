@@ -15,7 +15,6 @@
       </div>
       <button id="botaocomprar">Comprar</button>
     </div>
-    <div>{{ this.$store.state.Produtos.title }}</div>
   </div>
   </div>
 </template>
